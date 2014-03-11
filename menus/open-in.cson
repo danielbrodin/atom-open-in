@@ -1,0 +1,17 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable open-in': 'open-in:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Open in'
+      'submenu': [
+        { 'label': 'GitHub', 'command': 'open-in:GitHub' }
+        { 'label': 'SourceTree', 'command': 'open-in:SourceTree' }
+      ]
+    ]
+  }
+]

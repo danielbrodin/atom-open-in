@@ -1,0 +1,12 @@
+{
+  "name": "open-in",
+  "main": "./lib/open-in",
+  "version": "0.1.0",
+  "description": "Package for opening your project in git client",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+  }
+}
