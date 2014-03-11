@@ -1,9 +1,13 @@
 {
   "name": "open-in",
   "main": "./lib/open-in",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Package for opening your project in git client",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielbrodin/atom-open-in"
+  },
   "engines": {
     "atom": ">0.50.0"
   },
