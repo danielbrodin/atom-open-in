@@ -1,4 +1,5 @@
 OpenIn = require '../lib/open-in'
+{WorkspaceView} = require 'atom'
 
 # Use the command `window:run-package-specs` (cmd-alt-ctrl-p) to run specs.
 #
@@ -10,20 +11,22 @@ describe "OpenIn", ->
 
   beforeEach ->
     atom.workspaceView = new WorkspaceView
-    activationPromise = atom.packages.activatePackage('openIn')
+    activationPromise = atom.packages.activatePackage('open-in')
 
-  describe "when the open-in:toggle event is triggered", ->
+  describe "when the open-in:HibGub event is triggered", ->
     it "attaches and then detaches the view", ->
-      expect(atom.workspaceView.find('.open-in')).not.toExist()
+      #expect(atom.workspaceView.find('.open-in')).toExist()
 
       # This is an activation event, triggering it will cause the package to be
       # activated.
-      atom.workspaceView.trigger 'open-in:toggle'
+      #atom.workspaceView.command 'open-in:HibGub', => @open('HibGub')
+      atom.workspaceView.trigger 'open-in:HibGub'
 
       waitsForPromise ->
-        activationPromise
+        expect(atom.workspaceView.find('.open-in')).toExist()
+        #activationPromise
 
       runs ->
-        expect(atom.workspaceView.find('.open-in')).toExist()
-        atom.workspaceView.trigger 'open-in:toggle'
         expect(atom.workspaceView.find('.open-in')).not.toExist()
+        atom.workspaceView.trigger 'open-in:HibGub'
+        expect(atom.workspaceView.find('.open-in')).toExist()
