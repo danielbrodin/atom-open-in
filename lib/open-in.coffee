@@ -1,5 +1,3 @@
-OpenInView = require './open-in-view'
-
 {exec} = require 'child_process'
 
 module.exports =
@@ -9,7 +7,6 @@ module.exports =
     SourceTree: true
 
   activate: (state) ->
-    @openInView = new OpenInView(state.openInViewState)
     if atom.config.get('open-in.GitHub')
       atom.workspaceView.command 'open-in:GitHub', => @open('GitHub')
 
@@ -17,6 +14,9 @@ module.exports =
       atom.workspaceView.command 'open-in:SourceTree', => @open('SourceTree')
 
   error: (message) ->
+    unless @openInView?
+      OpenInView = require './open-in-view'
+      @openInView = new OpenInView()
     @openInView.message(message)
 
   open: (app) ->
