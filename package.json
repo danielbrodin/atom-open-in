@@ -3,7 +3,7 @@
   "main": "./lib/open-in",
   "activationEvents": ["open-in:toggle"],
   "version": "0.2.0",
-  "description": "Open current project or file in application",
+  "description": "Open current project or file in application of choice",
   "license": "MIT",
   "repository": {
     "type": "git",

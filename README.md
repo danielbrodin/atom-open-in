@@ -1,7 +1,8 @@
 # Open In {app}
 
-A package for opening the current project or file in the application
-of your choice.
+Why have one specific package for opening the current project in the terminal, another one for the Finder and a third for the GitHub application when you know which applications you use?
+
+**Open In** is a package for opening the current project or file in the application of your choice.
 
 ## Installation
 `apm install open-in` or search for it in the package manager.
