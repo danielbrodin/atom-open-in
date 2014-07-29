@@ -47,7 +47,7 @@ class OpenInAppView extends SelectListView
         atom.workspace.eachEditor (editor) =>
           path = editor.getPath()
 
-      open = exec "open -a #{app} #{path}" if path?
+    open = exec "open -a #{app} #{path}" if path?
 
-      open.stderr.on 'data', (data) =>
-        console.warn "Unable to find application #{app}"
+    open.stderr.on 'data', (data) =>
+      console.warn "Unable to find application #{app}"
