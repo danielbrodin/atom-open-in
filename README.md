@@ -1,21 +1,16 @@
 # Open In {app}
 
-A package for opening your project in a git client.
-
-There is currently support for the `GitHub` and `SourceTree` apps, but if you like it and want support for any other app, let me know :)
+A package for opening the current project or file in the application
+of your choice.
 
 ## Installation
 `apm install open-in` or search for it in the package manager.
 
 ## Usage
 
-Open the Command Palette `cmd+shift+P` and write `open in` or the application name like `github` to get the command for it.
-
-You can also run it from the **Packages** menu.
+Press `ctrl-alt-o` and pick **project** or **file**, then the application of choice.
 
 ## Settings
-
-If you don't use one of the available applications you can go in under the settings menu `cmd+,` and uncheck the applications you don't use. After restarting Atom they won't show up anymore.
-
-
-![Open In](open-in.gif)
+### Applications
+A comma separated list without spaces of applications you want to be able to trigger.
+`Default: GitHub,Terminal`

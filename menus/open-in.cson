@@ -1,16 +1,10 @@
-# See https://atom.io/docs/latest/creating-a-package#menus for more details
-# 'context-menu':
-#   '.tree-view':
-#       'Open folder in': 'open-in:GitHub'
-
 'menu': [
   {
     'label': 'Packages'
     'submenu': [
       'label': 'Open in'
       'submenu': [
-        { 'label': 'GitHub', 'command': 'open-in:GitHub' }
-        { 'label': 'SourceTree', 'command': 'open-in:SourceTree' }
+        { 'label': 'Toggle', 'command': 'open-in:toggle' }
       ]
     ]
   }

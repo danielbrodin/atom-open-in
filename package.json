@@ -1,8 +1,9 @@
 {
   "name": "open-in",
   "main": "./lib/open-in",
+  "activationEvents": ["open-in:toggle"],
   "version": "0.2.0",
-  "description": "Package for opening your project in your git application.",
+  "description": "Open current project or file in application",
   "license": "MIT",
   "repository": {
     "type": "git",

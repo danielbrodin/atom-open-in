@@ -1,23 +1,51 @@
-{View} = require 'atom'
+{$$, SelectListView} = require 'atom'
 
 module.exports =
-class OpenIn extends View
-  @content: ->
-    @div class: 'open-in overlay from-top', =>
-      @div class: 'message error-messages', =>
-        @i class: 'icon icon-alert'
-        @span 'Could not find application', class: 'open-in-message'
+class OpenInView extends SelectListView
+  type: null
+
+  activate: ->
+    new OpenInView
 
   initialize: (serializeState) ->
+    super
+    @addClass 'open-in overlay from-top'
 
-  message: (message) ->
+  serialize: ->
+
+  getFilterKey: -> 'title'
+
+  destroy: -> @detach()
+
+  toggle: () ->
     if @hasParent()
-      @detach()
+      @cancel()
     else
-      this.find('.open-in-message').text message
-      atom.workspaceView.append this
-      setTimeout @destroy, 4000
+      @attach()
 
-  destroy: ->
-    atom.workspaceView.find('.open-in').remove()
-    @detach
+  attach: ->
+    types = ['Project', 'Current file']
+    @setItems types
+
+    atom.workspaceView.append(@)
+    @focusFilterEditor()
+
+  viewForItem: (type) ->
+    $$ ->
+      @li class: 'open-in-item', =>
+        @div class: "icon icon-chevron-right pull-right", ""
+        @div =>
+          @span "Open "
+          @b class:"text-highlight", type
+          @span " in..."
+
+  confirmed: (type) =>
+    @cancel()
+    @createOpenInAppView().toggle(type)
+
+  createOpenInAppView: ->
+    unless @openInAappView
+      OpenInAppView = require './open-in-app-view'
+      @openInAppView = new OpenInAppView()
+    @openInAppView
+
