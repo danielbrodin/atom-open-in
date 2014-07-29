@@ -14,8 +14,6 @@ class OpenInAppView extends SelectListView
 
   serialize: ->
 
-  getFilterKey: -> 'title'
-
   destroy: -> @detach()
 
   toggle: (type) ->
@@ -27,6 +25,7 @@ class OpenInAppView extends SelectListView
 
   attach: ->
     apps = atom.config.get('open-in.applications').split(',')
+
     @setItems apps
 
     atom.workspaceView.append(@)
@@ -44,10 +43,10 @@ class OpenInAppView extends SelectListView
         path = atom.project?.getPath()
 
       when 'Current file'
-        atom.workspace.eachEditor (editor) =>
+        atom.workspace.eachEditor (editor) ->
           path = editor.getPath()
 
     open = exec "open -a #{app} #{path}" if path?
 
-    open.stderr.on 'data', (data) =>
+    open.stderr.on 'data', (data) ->
       console.warn "Unable to find application #{app}"
