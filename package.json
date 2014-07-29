@@ -1,8 +1,10 @@
 {
   "name": "open-in",
   "main": "./lib/open-in",
-  "activationEvents": ["open-in:toggle"],
-  "version": "0.2.0",
+  "activationEvents": [
+    "open-in:toggle"
+  ],
+  "version": "1.0.0",
   "description": "Open current project or file in application of choice",
   "license": "MIT",
   "repository": {
