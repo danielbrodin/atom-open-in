@@ -1,9 +1,9 @@
 {
   "name": "open-in",
   "main": "./lib/open-in",
-  "activationEvents": [
-    "open-in:toggle"
-  ],
+  "activationCommands": {
+    "atom-text-editor": ["open-in:toggle"]
+  },
   "version": "3.1.0",
   "description": "Open current project or file in application of choice",
   "license": "MIT",

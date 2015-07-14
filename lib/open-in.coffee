@@ -1,6 +1,8 @@
 module.exports =
-  configDefaults:
-    applications: 'GitHub,Terminal'
+  config:
+    applications:
+      type: 'string'
+      default: 'GitHub,Terminal'
 
   openInView: null
 
