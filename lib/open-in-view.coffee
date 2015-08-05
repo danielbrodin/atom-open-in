@@ -1,4 +1,4 @@
-{$$, SelectListView} = require 'atom'
+{$$, SelectListView} = require 'atom-space-pen-views'
 
 module.exports =
 class OpenInView extends SelectListView
@@ -9,7 +9,10 @@ class OpenInView extends SelectListView
 
   initialize: (serializeState) ->
     super
-    @addClass 'open-in overlay from-top'
+    @addClass 'open-in'
+
+  cancelled: ->
+    @hide()
 
   serialize: ->
 
@@ -17,18 +20,25 @@ class OpenInView extends SelectListView
 
   destroy: -> @detach()
 
-  toggle: () ->
-    if @hasParent()
-      @cancel()
-    else
-      @attach()
+  hide: ->
+    @panel?.hide()
 
-  attach: ->
+  show: ->
+    @panel ?= atom.workspace.addModalPanel(item: this)
+    @panel.show()
+
+    @storeFocusedElement()
+
     types = ['Project', 'Current file']
     @setItems types
 
-    atom.workspaceView.append(@)
     @focusFilterEditor()
+
+  toggle: () ->
+    if @panel?.isVisible()
+      @cancel()
+    else
+      @show()
 
   viewForItem: (type) ->
     $$ ->
@@ -48,4 +58,3 @@ class OpenInView extends SelectListView
       OpenInAppView = require './open-in-app-view'
       @openInAppView = new OpenInAppView()
     @openInAppView
-
