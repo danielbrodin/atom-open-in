@@ -56,7 +56,6 @@ class OpenInAppView extends SelectListView
         atom.workspace.observeTextEditors (editor) ->
           path = editor.getPath()
 
-    console.log "#{path}"
     open = exec "#{app} #{path}" if path?
 
     open.stderr.on 'data', (data) ->

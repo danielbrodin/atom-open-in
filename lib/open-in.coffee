@@ -2,7 +2,7 @@ module.exports =
   config:
     applications:
       type: 'string'
-      default: 'gedit,anjuta,GitHub,Terminal'
+      default: 'GitHub,Terminal'
 
   openInView: null
 
