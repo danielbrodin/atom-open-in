@@ -50,7 +50,7 @@ class OpenInAppView extends SelectListView
 
     switch @type
       when 'Project'
-        path = atom.project?.getPath()
+        path = atom.project?.getPaths()[0]
 
       when 'Current file'
         atom.workspace.observeTextEditors (editor) ->
