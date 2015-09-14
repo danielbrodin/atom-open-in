@@ -1,12 +1,15 @@
 module.exports =
-  configDefaults:
-    applications: 'GitHub,Terminal'
+  config:
+    applications:
+      type: 'string'
+      default: 'GitHub,Terminal'
 
   openInView: null
 
   activate: (state) ->
-    atom.workspaceView.command 'open-in:toggle', =>
-      @createView().toggle()
+    atom.commands.add 'atom-workspace',
+      'open-in:toggle': =>
+        @createView().toggle()
 
   createView: =>
     unless @openInView

@@ -1,4 +1,5 @@
-{$$, SelectListView} = require 'atom'
+{$$, SelectListView} = require 'atom-space-pen-views'
+
 {exec} = require 'child_process'
 
 module.exports =
@@ -10,26 +11,35 @@ class OpenInAppView extends SelectListView
 
   initialize: (serializeState) ->
     super
-    @addClass 'open-in overlay from-top'
+    @addClass 'open-in'
+
+  cancelled: ->
+    @hide()
 
   serialize: ->
 
   destroy: -> @detach()
 
-  toggle: (type) ->
-    @type = type
-    if @hasParent()
-      @cancel()
-    else
-      @attach()
+  show: ->
+    @panel ?= atom.workspace.addModalPanel(item: this)
+    @panel.show()
 
-  attach: ->
+    @storeFocusedElement()
+
     apps = atom.config.get('open-in.applications').split(',')
-
     @setItems apps
 
-    atom.workspaceView.append(@)
     @focusFilterEditor()
+
+  hide: ->
+    @panel?.hide()
+
+  toggle: (type) ->
+    @type = type
+    if @panel?.isVisible()
+      @cancel()
+    else
+      @show()
 
   viewForItem: (app) ->
     $$ ->
@@ -43,10 +53,10 @@ class OpenInAppView extends SelectListView
         path = atom.project?.getPath()
 
       when 'Current file'
-        atom.workspace.eachEditor (editor) ->
-          path = editor.getPath()
+        atom.workspace.observeTextEditors (editor) ->
+          path = atom.workspace.getActiveTextEditor().getPath()
 
-    open = exec "open -a #{app} #{path}" if path?
+    open = exec "#{app} #{path}" if path?
 
     open.stderr.on 'data', (data) ->
       console.warn "Unable to find application #{app}"
